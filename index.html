@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Process Scheduler & Deadlock Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> Chart.js for Gantt Chart -->
+</head>
+
+<body>
+    <div id="app">
+        <h1>Process Scheduler & Deadlock Detector</h1>
+
+        <!-- Show Process List and Control Panel -->
+        <section id="setup-section">
+            <div id="process-list">
+                <h2>Added Processes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PID</th>
+                            <th>Burst Time</th>
+                            <th>Arrival Time</th>
+                            <th>Priority</th>
+                            <th>Resources</th>
+                            <th>Options</th> <!-- New column -->
+                        </tr>
+                    </thead>
+                    <tbody id="process-table-body">
+                        <!-- JS inserts rows here -->
+                    </tbody>
+                </table>
+                <button id="open-process-modal">+ Add Process</button>
+            </div>
+
+            <div id="controls">
+                <h2>Scheduler Options</h2>
+                <label>Select Algorithm:
+                    <select id="algorithm">
+                        <option value="fcfs">First-Come First-Serve (FCFS)</option>
+                        <option value="sjf">Shortest Job First (SJF)</option>
+                        <option value="priority">Priority Scheduling</option>
+                        <option value="roundrobin">Round Robin</option>
+                    </select>
+                </label>
+                <button id="start-simulation">Start Simulation</button>
+                <!-- <button id="reset-all">Reset</button> -->
+            </div>
+        </section>
+
+        <!-- Simulation Output -->
+        <section id="output-section" class="hide-from-view">
+            <h2>Simulation Output</h2>
+            <canvas id="gantt-canvas"></canvas> <!-- Gantt chart canvas -->
+            <div id="metrics-table"></div>
+            <div id="deadlock-info"></div>
+            <button id="back-to-setup">Back to Setup</button>
+        </section>
+    </div>
+
+    <!-- ⏱️ Round Robin Quantum Modal -->
+    <div id="quantum-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" id="close-quantum-modal">&times;</span>
+            <h2>Enter Time Quantum</h2>
+            <form id="quantum-form">
+                <label>Time Quantum (ms):
+                    <input type="number" id="quantum-input" required min="1">
+                </label>
+                <button type="submit">Start</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 🪟 Modal for Adding Process -->
+    <div id="process-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2><span class="tag">Add</span> Process</h2>
+            <form id="process-form">
+                <label>Process ID: <input type="text" id="pid" required></label>
+                <label>Burst Time: <input type="number" id="burstTime" required></label>
+                <label>Arrival Time: <input type="number" id="arrivalTime" required></label>
+                <label>Priority: <input type="number" id="priority" required></label>
+                <label>Resources:</label>
+                <div id="resource-options">
+                    <label><input type="checkbox" name="resources" value="R1"> R1</label>
+                    <label><input type="checkbox" name="resources" value="R2"> R2</label>
+                    <label><input type="checkbox" name="resources" value="R3"> R3</label>
+                    <label><input type="checkbox" name="resources" value="R4"> R4</label>
+                </div>
+
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
