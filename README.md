@@ -29,6 +29,5 @@ This project is built using **Vanilla JavaScript**, **HTML**, and **CSS**, and r
 
 ## 🔗 Live Demo
 
-👉 [Click here to try it on GitHub Pages](https://your-username.github.io/process-deadlock-simulator)
+👉 [Click here to try it](https://kartik-trikoti.github.io/Process_and_Deadlock_Simulator/)
 
-> ⚠️ *Replace the above link with the actual one once your project is hosted.*
